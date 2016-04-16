@@ -1,49 +1,25 @@
 
-<table id="tabla_luz" class="display well" cellspacing="0" width="100%">
+<table id="tabla_gas" class="display well" cellspacing="0" width="100%">
 	<thead>
 		<tr>
-			<th>NºFactura</th>
-			<th>Periodo</th>
-			<th>Fecha Emision</th>
-			<th>Codigo</th>
+			<th>Id Factura</th>
 			<th>Cantidad</th>
-			<th>Consumido</th>
+			<th>Consumo</th>
+			<th>Fecha Inicio</th>
+			<th>Fecha Fin</th>
+			<th>Fecha Emision</th>
 		</tr>
 	</thead>
-	<tfoot>
-		<tr>
-			<th>NºFactura</th>
-			<th>Periodo</th>
-			<th>Fecha Emision</th>
-			<th>Codigo</th>
-			<th>Cantidad</th>
-			<th>Consumido</th>
-		</tr>
-	</tfoot>
 	<tbody>
-		<tr>
-			<td>12331251</td>
-			<td>Mayo</td>
-			<td>23/06/2016</td>
-			<td>445</td>
-			<td>54,45€</td>
-			<td>5,5 kW/h</td>
-		</tr>
-		<tr>
-			<td>312311</td>
-			<td>Abril</td>
-			<td>23/05/2016</td>
-			<td>412</td>
-			<td>44,45€</td>
-			<td>4,5 kW/h</td>
-		</tr>
-		<tr>
-			<td>5123123</td>
-			<td>Marzo</td>
-			<td>22/04/2016</td>
-			<td>312</td>
-			<td>80,45€</td>
-			<td>7,5 kW/h</td>
-		</tr>
+		<c:forEach items="${facturasGas}" var="item">
+			<tr>
+				<td>${item.idFactura}</td>
+				<td>${item.importe}</td>
+				<td>${item.consumo}</td>
+				<td>${item.fechaInicio}</td>
+				<td>${item.fechaFin}</td>
+				<td>${item.fechaEmision}</td>
+			</tr>
+		</c:forEach>
 	</tbody>
 </table>

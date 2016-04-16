@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5154eb8c-a6aa-428a-824f-494c55255ad1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/IFactura2016Servlet.java" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/IFactura2016Servlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/WEB-INF/appengine-web.xml" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/WEB-INF/appengine-web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/index.html" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/FacturasServlet.java" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/FacturasServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/dao/IFacturaDao.java" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/dao/IFacturaDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/dao/impl/IFacturaDaoImpl.java" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/src/es/upm/dit/isst/iFactura2016/dao/impl/IFacturaDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturas.jsp" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturas.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturasgas.jsp" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturasgas.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturastelefono.jsp" afterPath="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturastelefono.jsp" />
     </list>
     <ignored path="iFactura.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,11 +60,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/scripts/login/login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="facturastelefono.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturastelefono.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.125">
+              <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="facturasgas.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturasgas.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.026548672">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="12" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -74,6 +99,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/scripts/login/login.js" />
+        <option value="$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturasgas.jsp" />
       </list>
     </option>
   </component>
@@ -160,6 +186,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iFactura" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iFactura" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="es.upm.dit.isst.iFactura2016" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -313,7 +361,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -410,6 +458,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturastelefono.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.125">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/es.upm.dit.isst.iFactura2016/war/jsp/facturasgas.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.026548672">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="12" selection-end-column="8" />
           <folding />
         </state>
       </provider>
