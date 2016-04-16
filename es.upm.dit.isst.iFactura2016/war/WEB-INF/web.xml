@@ -24,4 +24,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>FacturasServlet</servlet-name>
 		<url-pattern>/facturas</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>NuevaFacturaServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.iFactura2016.NuevaFacturaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NuevaFacturaServlet</servlet-name>
+		<url-pattern>/nuevaFactura</url-pattern>
+	</servlet-mapping>
 </web-app>

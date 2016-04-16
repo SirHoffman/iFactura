@@ -6,10 +6,10 @@ package es.upm.dit.isst.iFactura2016.dto;
 public class FacturaGasDto {
 
 	/** The id factura. */
-	private Integer idFactura;
+	private Long idFactura;
 
 	/** The importe. */
-	private Integer importe;
+	private Double importe;
 
 	/** The consumo. */
 	private Double consumo;
@@ -34,7 +34,7 @@ public class FacturaGasDto {
 	 *
 	 * @return the id factura
 	 */
-	public Integer getIdFactura() {
+	public Long getIdFactura() {
 		return idFactura;
 	}
 
@@ -44,7 +44,7 @@ public class FacturaGasDto {
 	 * @param idFactura
 	 *            the new id factura
 	 */
-	public void setIdFactura(Integer idFactura) {
+	public void setIdFactura(Long idFactura) {
 		this.idFactura = idFactura;
 	}
 
@@ -53,7 +53,7 @@ public class FacturaGasDto {
 	 *
 	 * @return the importe
 	 */
-	public Integer getImporte() {
+	public Double getImporte() {
 		return importe;
 	}
 
@@ -63,7 +63,7 @@ public class FacturaGasDto {
 	 * @param importe
 	 *            the new importe
 	 */
-	public void setImporte(Integer importe) {
+	public void setImporte(Double importe) {
 		this.importe = importe;
 	}
 

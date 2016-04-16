@@ -3,6 +3,8 @@ package es.upm.dit.isst.iFactura2016.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -16,7 +18,8 @@ public class FacturaGas implements Serializable {
 
 	/** The id. */
 	@Id
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
 
 	/** The cliente. */
 	private Integer cliente;
@@ -53,7 +56,7 @@ public class FacturaGas implements Serializable {
 	 *
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -63,7 +66,7 @@ public class FacturaGas implements Serializable {
 	 * @param id
 	 *            the new id
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

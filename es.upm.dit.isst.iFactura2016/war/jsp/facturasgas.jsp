@@ -1,5 +1,5 @@
 
-<table id="tabla_gas" class="display well" cellspacing="0" width="100%">
+<table id="tabla_gas" class="display " cellspacing="0" width="100%">
 	<thead>
 		<tr>
 			<th>Id Factura</th>

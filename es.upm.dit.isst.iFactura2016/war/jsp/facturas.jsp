@@ -23,66 +23,72 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div style="padding-left: 70px; padding-right: 70px;">
-		<header>
-			<h3>Facturas Gas</h3>
-		</header>
-		<c:if test="${existenFacturasGas != null}">
-			<%@ include file="facturasgas.jsp"%>
-		</c:if>
-		<div class="dropdown">
-			<button class="btn dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				Añadir Factura <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#">Manual</a></li>
-				<li><a href="#">Archivo</a></li>
-				<li><a href="#">Enlace</a></li>
-			</ul>
+	<div id="facturasDiv">
+		<div style="padding-left: 70px; padding-right: 70px;">
+			<header>
+				<h3>Facturas Gas</h3>
+			</header>
+			<c:if test="${existenFacturasGas != null}">
+				<%@ include file="facturasgas.jsp"%>
+			</c:if>
+			<div class="dropdown">
+				<button class="btn dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Añadir Factura <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#" id="facturaGasManual">Manual</a></li>
+					<li><a href="#">Archivo</a></li>
+					<li><a href="#">Enlace</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div style="padding-left: 70px;">
+			<header>
+				<h3>Facturas Luz</h3>
+			</header>
+			<c:if test="${existenFacturasLuz != null}">
+				<%@ include file="facturasluz.jsp"%>
+			</c:if>
+			<div class="dropdown">
+				<button class="btn dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Añadir Factura <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Manual</a></li>
+					<li><a href="#">Archivo</a></li>
+					<li><a href="#">Enlace</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<div style="padding-left: 70px;">
+			<header>
+				<h3>Facturas Telefono</h3>
+			</header>
+			<c:if test="${existenFacturasTelefono != null}">
+				<%@ include file="facturastelefono.jsp"%>
+			</c:if>
+			<div class="dropdown">
+				<button class="btn dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Añadir Factura <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Manual</a></li>
+					<li><a href="#">Archivo</a></li>
+					<li><a href="#">Enlace</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-
-	<div style="padding-left: 70px;">
-		<header>
-			<h3>Facturas Luz</h3>
-		</header>
-		<c:if test="${existenFacturasLuz != null}">
-			<%@ include file="facturasluz.jsp"%>
-		</c:if>
-		<div class="dropdown">
-			<button class="btn dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				Añadir Factura <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#">Manual</a></li>
-				<li><a href="#">Archivo</a></li>
-				<li><a href="#">Enlace</a></li>
-			</ul>
-		</div>
+	<div id="formularioGas" style="display: none">
+		<%@ include file="formulariogas.jsp"%>
 	</div>
 
-
-	<div style="padding-left: 70px;">
-		<header>
-			<h3>Facturas Telefono</h3>
-		</header>
-		<c:if test="${existenFacturasTelefono != null}">
-			<%@ include file="facturastelefono.jsp"%>
-		</c:if>
-		<div class="dropdown">
-			<button class="btn dropdown-toggle" type="button"
-				data-toggle="dropdown">
-				Añadir Factura <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#">Manual</a></li>
-				<li><a href="#">Archivo</a></li>
-				<li><a href="#">Enlace</a></li>
-			</ul>
-		</div>
-	</div>
 
 
 

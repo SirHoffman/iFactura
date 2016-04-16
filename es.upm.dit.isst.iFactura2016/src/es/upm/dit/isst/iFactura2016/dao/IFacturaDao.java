@@ -38,4 +38,12 @@ public interface IFacturaDao {
 	 */
 	public List<FacturaTelefono> getFacturasTelefonoByUser(Integer idUser);
 
+	/**
+	 * Save.
+	 *
+	 * @param nuevaFacturaGas
+	 *            the nueva factura gas
+	 */
+	public void save(FacturaGas nuevaFacturaGas);
+
 }

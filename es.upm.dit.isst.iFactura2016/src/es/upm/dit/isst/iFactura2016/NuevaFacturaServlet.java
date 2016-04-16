@@ -1,7 +1,10 @@
 package es.upm.dit.isst.iFactura2016;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -18,14 +21,39 @@ import es.upm.dit.isst.iFactura2016.model.FacturaLuz;
 import es.upm.dit.isst.iFactura2016.model.FacturaTelefono;
 
 @SuppressWarnings("serial")
-public class FacturasServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+public class NuevaFacturaServlet extends HttpServlet {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-		RequestDispatcher view = req.getRequestDispatcher("/jsp/facturas.jsp");
-
-		// Se buscan todas las facturas en BBDD relativas al usuario y se envian
-		// a la vista
 		IFacturaDao iFacturaDao = IFacturaDaoImpl.getInstance();
+
+		Integer cantidad = Integer.parseInt(req.getParameter("cantidad"));
+		Double consumo = Double.parseDouble(req.getParameter("consumo"));
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+		Date fechaInicio = new java.util.Date();
+		Date fechaFin = new java.util.Date();
+		Date fechaEmision = new java.util.Date();
+		try {
+			fechaInicio = formatter.parse(req.getParameter("fechainicio"));
+			fechaFin = formatter.parse(req.getParameter("fechafin"));
+			fechaEmision = formatter.parse(req.getParameter("fechaemision"));
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		FacturaGas nuevaFacturaGas = new FacturaGas();
+		nuevaFacturaGas.setCliente(1);
+		nuevaFacturaGas.setConsumoFacturado(consumo);
+		nuevaFacturaGas.setConsumoServicios(consumo);
+		nuevaFacturaGas.setEmpresa("ETSIT");
+		nuevaFacturaGas.setEquiposMedida(false);
+		nuevaFacturaGas.setImporte((double) cantidad);
+		nuevaFacturaGas.setPotenciaContratada((double) 3);
+		nuevaFacturaGas.setPotenciaFacturada((double) 3);
+
+		iFacturaDao.save(nuevaFacturaGas);
 
 		obtenerFacturasGas(req, iFacturaDao);
 
@@ -33,12 +61,13 @@ public class FacturasServlet extends HttpServlet {
 
 		obtenerFacturasTelefono(req, iFacturaDao);
 
+		RequestDispatcher view = req.getRequestDispatcher("/jsp/facturas.jsp");
+
 		try {
 			view.forward(req, resp);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private void obtenerFacturasTelefono(HttpServletRequest req, IFacturaDao ifacturaDao) {

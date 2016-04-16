@@ -3,6 +3,7 @@ package es.upm.dit.isst.iFactura2016.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import es.upm.dit.isst.iFactura2016.dao.IFacturaDao;
@@ -73,6 +74,17 @@ public class IFacturaDaoImpl implements IFacturaDao {
 		List<FacturaTelefono> facturasTelefono = q.getResultList();
 		em.close();
 		return facturasTelefono;
+	}
+
+	@Override
+	public void save(FacturaGas nuevaFacturaGas) {
+		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.persist(nuevaFacturaGas);
+		transaction.commit();
+		em.close();
+
 	}
 
 }

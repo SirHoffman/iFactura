@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -17,7 +19,8 @@ public class FacturaTelefono implements Serializable {
 
 	/** The id. */
 	@Id
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
 
 	/** The nombre. */
 	private String nombre;
@@ -60,7 +63,7 @@ public class FacturaTelefono implements Serializable {
 	 *
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -70,7 +73,7 @@ public class FacturaTelefono implements Serializable {
 	 * @param id
 	 *            the new id
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
