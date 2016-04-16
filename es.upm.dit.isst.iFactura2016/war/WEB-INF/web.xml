@@ -15,4 +15,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>FacturasServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.iFactura2016.FacturasServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FacturasServlet</servlet-name>
+		<url-pattern>/facturas</url-pattern>
+	</servlet-mapping>
 </web-app>
