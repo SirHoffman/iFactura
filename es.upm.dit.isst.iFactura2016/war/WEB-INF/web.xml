@@ -51,4 +51,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>EditUserServlet</servlet-name>
 		<url-pattern>/editUser</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FaqServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.iFactura2016.FaqServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FaqServlet</servlet-name>
+		<url-pattern>/faq</url-pattern>
+	</servlet-mapping>
 </web-app>
