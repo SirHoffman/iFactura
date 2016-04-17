@@ -1,8 +1,13 @@
 $(function() {
-	$('#facturas').tab('show');
+	$('#editProfile').click(function(e) {
+		$("#editProfileDiv").show();
+		$("#homeDiv").hide();
+		e.preventDefault();
+	});
 
-	$('#headerTabs a').click(function(e) {
-		e.preventDefault()
-		$(this).tab('show')
-	})
+	$('#editBack').click(function(e) {
+		$("#editProfileDiv").hide();
+		$("#homeDiv").show();
+		e.preventDefault();
+	});
 });

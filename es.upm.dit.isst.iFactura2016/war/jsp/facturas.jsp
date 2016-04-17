@@ -44,7 +44,7 @@
 			</div>
 		</div>
 
-		<div style="padding-left: 70px;">
+		<div style="padding-left: 70px; padding-right: 70px;">
 			<header>
 				<h3>Facturas Luz</h3>
 			</header>
@@ -65,7 +65,7 @@
 		</div>
 
 
-		<div style="padding-left: 70px;">
+		<div style="padding-left: 70px; padding-right: 70px;">
 			<header>
 				<h3>Facturas Telefono</h3>
 			</header>

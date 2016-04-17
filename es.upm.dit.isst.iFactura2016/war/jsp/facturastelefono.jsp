@@ -3,23 +3,24 @@
 	width="100%">
 	<thead>
 		<tr>
-			<th>NºFactura</th>
-			<th>Periodo</th>
-			<th>Fecha Emision</th>
-			<th>Codigo</th>
-			<th>Cantidad</th>
-			<th>Consumido</th>
+			<th>Factura</th>
+			<th>Nombre</th>
+			<th>Compañia</th>
+			<th>Importe</th>
+			<th>Datos Consumidos</th>
+			<th>Voz Consumida</th>
+			<th>Fecha</th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${facturasTelefono}" var="item">
 			<tr>
-				<td>${item.idFactura}</td>
+				<td>${item.id}</td>
+				<td>${item.nombre}</td>
 				<td>${item.importe}</td>
-				<td>${item.consumo}</td>
-				<td>${item.fechaInicio}</td>
-				<td>${item.fechaFin}</td>
-				<td>${item.fechaEmision}</td>
+				<td>${item.datosConsumidos}</td>
+				<td>${item.vozConsumida}</td>
+				<td>${item.fecha}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -26,7 +26,8 @@
 
 	<!-- Start Login box -->
 	<div id="loginDiv">
-		<div class="container clearfix" style="padding: 70px 70px 70px 70px;">
+		<div class="container clearfix"
+			style="padding: 70px 70px 70px 70px; border-radius: 15px 50px; border: 2px solid #000000;">
 			<form class="col-sm-4 col-md-4 animated form-signin">
 				<h2 class="form-signin-heading">Login</h2>
 				<div style="padding-bottom: 15px; padding-top: 15px">

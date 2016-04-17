@@ -10,5 +10,5 @@ $(function() {
 		$("#loginDiv").show();
 		e.preventDefault();
 	});
-	registrationBack
+
 });

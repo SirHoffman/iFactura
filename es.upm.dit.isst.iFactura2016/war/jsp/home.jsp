@@ -20,7 +20,18 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	<div id="homeDiv" style="padding: 70px 70px 70px 70px;">
+		<h1>PAGINA HOME</h1>
 
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" id="editProfile" class="btn btn-default">Editar
+				Perfil</button>
+		</div>
+	</div>
+	<div id="editProfileDiv"
+		style="padding: 70px 70px 70px 70px; display: none">
+		<%@ include file="editprofile.jsp"%>
+	</div>
 
 
 	<%@ include file="footer.jsp"%>

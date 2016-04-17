@@ -9,7 +9,7 @@
 						<li><a href="/ifactura2016">Home</a></li>
 						<li><a href="/facturas">Facturas</a></li>
 						<li><a href="/ofertas">Ofertas</a></li>
-						<li><a href="/logout">Salir</a></li>
+						<li><a href="${url }">Salir</a></li>
 					</ul></li>
 			</ul>
 		</div>

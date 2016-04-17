@@ -15,7 +15,7 @@ import es.upm.dit.isst.iFactura2016.model.Clientes;
 import es.upm.dit.isst.iFactura2016.model.UsuariosCliente;
 
 @SuppressWarnings("serial")
-public class NuevoUserServlet extends HttpServlet {
+public class EditUserServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		IFacturaDao iFacturaDao = IFacturaDaoImpl.getInstance();

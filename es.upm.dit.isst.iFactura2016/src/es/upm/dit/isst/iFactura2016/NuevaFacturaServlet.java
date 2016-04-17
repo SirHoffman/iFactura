@@ -55,7 +55,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 
 		obtenerFacturasTelefono(req, iFacturaDao);
 
-		RequestDispatcher view = req.getRequestDispatcher("/facturas");
+		RequestDispatcher view = req.getRequestDispatcher("/jsp/home.jsp");
 
 		try {
 			view.forward(req, resp);

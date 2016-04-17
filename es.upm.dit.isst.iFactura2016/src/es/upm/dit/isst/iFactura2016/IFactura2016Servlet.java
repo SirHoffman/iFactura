@@ -28,7 +28,7 @@ public class IFactura2016Servlet extends HttpServlet {
 			url = userService.createLogoutURL(req.getRequestURI());
 			urlLinktext = "Logout";
 
-			view = req.getRequestDispatcher("/jsp/main.jsp");
+			view = req.getRequestDispatcher("/jsp/home.jsp");
 		}
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);

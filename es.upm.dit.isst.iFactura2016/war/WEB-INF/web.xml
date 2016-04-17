@@ -42,4 +42,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>NuevoUserServlet</servlet-name>
 		<url-pattern>/nuevoUser</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EditUserServlet</servlet-name>
+		<servlet-class>es.upm.dit.isst.iFactura2016.EditUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditUserServlet</servlet-name>
+		<url-pattern>/editUser</url-pattern>
+	</servlet-mapping>
 </web-app>
