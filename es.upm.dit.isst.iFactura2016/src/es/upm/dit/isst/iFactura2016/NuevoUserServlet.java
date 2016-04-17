@@ -51,7 +51,7 @@ public class NuevoUserServlet extends HttpServlet {
 		newUsuarioCliente.setPassword(password);
 		iFacturaDao.save(newUsuarioCliente);
 
-		RequestDispatcher view = req.getRequestDispatcher("/jsp/login.jsp");
+		RequestDispatcher view = req.getRequestDispatcher("/jsp/main.jsp");
 
 		req.getSession().setAttribute("user", nombre);
 

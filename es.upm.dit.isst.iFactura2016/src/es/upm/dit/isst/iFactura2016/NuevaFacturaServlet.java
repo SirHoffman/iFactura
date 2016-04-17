@@ -1,7 +1,10 @@
 package es.upm.dit.isst.iFactura2016;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +17,7 @@ import es.upm.dit.isst.iFactura2016.dao.IFacturaDao;
 import es.upm.dit.isst.iFactura2016.dao.impl.IFacturaDaoImpl;
 import es.upm.dit.isst.iFactura2016.dto.FacturaGasDto;
 import es.upm.dit.isst.iFactura2016.dto.FacturaLuzDto;
+import es.upm.dit.isst.iFactura2016.dto.FacturaTelefonoDto;
 import es.upm.dit.isst.iFactura2016.model.FacturaGas;
 import es.upm.dit.isst.iFactura2016.model.FacturaLuz;
 import es.upm.dit.isst.iFactura2016.model.FacturaTelefono;
@@ -40,7 +44,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 		} else if (tipoFactura.compareToIgnoreCase("luz") == 0) {
 			saveFacturaLuz(req, iFacturaDao);
 		} else if (tipoFactura.compareToIgnoreCase("telefono") == 0) {
-
+			saveFacturaTelefono(req, iFacturaDao);
 		} else {
 			throw new IOException("ERROR AL CREAR FACTURA");
 		}
@@ -61,6 +65,50 @@ public class NuevaFacturaServlet extends HttpServlet {
 	}
 
 	/**
+	 * Save factura telefono.
+	 *
+	 * @param req
+	 *            the req
+	 * @param iFacturaDao
+	 *            the i factura dao
+	 */
+	private void saveFacturaTelefono(HttpServletRequest req, IFacturaDao iFacturaDao) {
+		String nombre = req.getParameter("nombre");
+		String compania = req.getParameter("compania");
+		Double importe = Double.parseDouble(req.getParameter("importe"));
+		Double datosContratados = Double.parseDouble(req.getParameter("datoscontratados"));
+		Double datosConsumidos = Double.parseDouble(req.getParameter("datosconsumidos"));
+		Boolean lte = Boolean.parseBoolean("lte");
+		Double vozContratada = Double.parseDouble(req.getParameter("vozcontratada"));
+		Double vozConsumida = Double.parseDouble(req.getParameter("vozconsumida"));
+		String franjaHoraria = req.getParameter("franjahoraria");
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Date fecha = new Date();
+		try {
+			fecha = formatter.parse(req.getParameter("fecha"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		FacturaTelefono newFacturaTelefono = new FacturaTelefono();
+		newFacturaTelefono.setCliente((long) 1);
+		newFacturaTelefono.setNombre(nombre);
+		newFacturaTelefono.setEmpresa(compania);
+		newFacturaTelefono.setImporte(importe);
+		newFacturaTelefono.setDatosContratados(datosContratados);
+		newFacturaTelefono.setDatosConsumidos(datosConsumidos);
+		newFacturaTelefono.setLte(lte);
+		newFacturaTelefono.setVozContratada(vozContratada);
+		newFacturaTelefono.setVozConsumida(vozConsumida);
+		newFacturaTelefono.setFranjaHoraria(franjaHoraria);
+		newFacturaTelefono.setFecha(fecha);
+
+		iFacturaDao.save(newFacturaTelefono);
+
+	}
+
+	/**
 	 * Save factura gas.
 	 *
 	 * @param req
@@ -78,7 +126,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 		Boolean equiposMedida = Boolean.valueOf(req.getParameter("equiposMedida"));
 
 		FacturaGas nuevaFacturaGas = new FacturaGas();
-		nuevaFacturaGas.setCliente(1);
+		nuevaFacturaGas.setCliente((long) 1);
 		nuevaFacturaGas.setConsumoFacturado(consumoFacturado);
 		nuevaFacturaGas.setConsumoServicios(consumoServicios);
 		nuevaFacturaGas.setEmpresa(empresa);
@@ -108,7 +156,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 		Boolean equiposMedida = Boolean.valueOf(req.getParameter("equiposMedida"));
 
 		FacturaLuz nuevaFacturaLuz = new FacturaLuz();
-		nuevaFacturaLuz.setCliente(1);
+		nuevaFacturaLuz.setCliente((long) 1);
 		nuevaFacturaLuz.setConsumoFacturado(consumoFacturado);
 		nuevaFacturaLuz.setConsumoServicios(consumoServicios);
 		nuevaFacturaLuz.setEmpresa(empresa);
@@ -130,9 +178,27 @@ public class NuevaFacturaServlet extends HttpServlet {
 	 */
 	private void obtenerFacturasTelefono(HttpServletRequest req, IFacturaDao ifacturaDao) {
 		List<FacturaTelefono> facturasTelefono = ifacturaDao.getFacturasTelefonoByUser(1);
+		List<FacturaTelefonoDto> facturasObtenidas = new ArrayList<FacturaTelefonoDto>();
 		if (facturasTelefono != null && !facturasTelefono.isEmpty()) {
 			req.setAttribute("existenFacturasTelefono", true);
-			req.setAttribute("facturasTelefono", facturasTelefono);
+			for (FacturaTelefono factura : facturasTelefono) {
+				FacturaTelefonoDto facturaDevuelta = new FacturaTelefonoDto();
+				facturaDevuelta.setId(factura.getId());
+				facturaDevuelta.setCliente(factura.getCliente());
+				facturaDevuelta.setNombre(factura.getNombre());
+				facturaDevuelta.setCompania(factura.getEmpresa());
+				facturaDevuelta.setImporte(factura.getImporte());
+				facturaDevuelta.setDatosContratados(factura.getDatosContratados());
+				facturaDevuelta.setDatosConsumidos(factura.getDatosConsumidos());
+				facturaDevuelta.setLte(factura.getLte());
+				facturaDevuelta.setVozContratada(factura.getVozContratada());
+				facturaDevuelta.setVozConsumida(factura.getVozConsumida());
+				facturaDevuelta.setFranjaHoraria(factura.getFranjaHoraria());
+				facturaDevuelta.setFecha(factura.getFecha().toString());
+
+				facturasObtenidas.add(facturaDevuelta);
+			}
+			req.setAttribute("facturasTelefono", facturasObtenidas);
 		}
 	}
 

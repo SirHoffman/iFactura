@@ -1,37 +1,21 @@
-package es.upm.dit.isst.iFactura2016.model;
-
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.annotation.Nullable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package es.upm.dit.isst.iFactura2016.dto;
 
 /**
- * The Class FacturaTelefono.
+ * The Class FacturaTelefonoDto.
  */
-@Entity
-public class FacturaTelefono implements Serializable {
-
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+public class FacturaTelefonoDto {
 
 	/** The id. */
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	/** The cliente. */
 	private Long cliente;
 
 	/** The nombre. */
-	@Nullable
 	private String nombre;
 
-	/** The empresa. */
-	private String empresa;
+	/** The compania. */
+	private String compania;
 
 	/** The importe. */
 	private Double importe;
@@ -55,12 +39,12 @@ public class FacturaTelefono implements Serializable {
 	private String franjaHoraria;
 
 	/** The fecha. */
-	private Date fecha;
+	private String fecha;
 
 	/**
-	 * Instantiates a new factura telefono.
+	 * Instantiates a new factura telefono dto.
 	 */
-	public FacturaTelefono() {
+	public FacturaTelefonoDto() {
 	}
 
 	/**
@@ -121,22 +105,22 @@ public class FacturaTelefono implements Serializable {
 	}
 
 	/**
-	 * Gets the empresa.
+	 * Gets the compania.
 	 *
-	 * @return the empresa
+	 * @return the compania
 	 */
-	public String getEmpresa() {
-		return empresa;
+	public String getCompania() {
+		return compania;
 	}
 
 	/**
-	 * Sets the empresa.
+	 * Sets the compania.
 	 *
-	 * @param empresa
-	 *            the new empresa
+	 * @param compania
+	 *            the new compania
 	 */
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
+	public void setCompania(String compania) {
+		this.compania = compania;
 	}
 
 	/**
@@ -277,7 +261,7 @@ public class FacturaTelefono implements Serializable {
 	 *
 	 * @return the fecha
 	 */
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
@@ -287,7 +271,7 @@ public class FacturaTelefono implements Serializable {
 	 * @param fecha
 	 *            the new fecha
 	 */
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
@@ -296,9 +280,9 @@ public class FacturaTelefono implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
+		result = prime * result + ((compania == null) ? 0 : compania.hashCode());
 		result = prime * result + ((datosConsumidos == null) ? 0 : datosConsumidos.hashCode());
 		result = prime * result + ((datosContratados == null) ? 0 : datosContratados.hashCode());
-		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + ((franjaHoraria == null) ? 0 : franjaHoraria.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -318,11 +302,16 @@ public class FacturaTelefono implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FacturaTelefono other = (FacturaTelefono) obj;
+		FacturaTelefonoDto other = (FacturaTelefonoDto) obj;
 		if (cliente == null) {
 			if (other.cliente != null)
 				return false;
 		} else if (!cliente.equals(other.cliente))
+			return false;
+		if (compania == null) {
+			if (other.compania != null)
+				return false;
+		} else if (!compania.equals(other.compania))
 			return false;
 		if (datosConsumidos == null) {
 			if (other.datosConsumidos != null)
@@ -333,11 +322,6 @@ public class FacturaTelefono implements Serializable {
 			if (other.datosContratados != null)
 				return false;
 		} else if (!datosContratados.equals(other.datosContratados))
-			return false;
-		if (empresa == null) {
-			if (other.empresa != null)
-				return false;
-		} else if (!empresa.equals(other.empresa))
 			return false;
 		if (fecha == null) {
 			if (other.fecha != null)
@@ -384,7 +368,7 @@ public class FacturaTelefono implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FacturaTelefono [id=" + id + ", cliente=" + cliente + ", nombre=" + nombre + ", empresa=" + empresa
+		return "FacturaTelefonoDto [id=" + id + ", cliente=" + cliente + ", nombre=" + nombre + ", compania=" + compania
 				+ ", importe=" + importe + ", datosContratados=" + datosContratados + ", datosConsumidos="
 				+ datosConsumidos + ", lte=" + lte + ", vozContratada=" + vozContratada + ", vozConsumida="
 				+ vozConsumida + ", franjaHoraria=" + franjaHoraria + ", fecha=" + fecha + "]";
