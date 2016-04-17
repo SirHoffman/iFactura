@@ -22,7 +22,7 @@ public class UsuariosCliente implements Serializable {
 	private Long id;
 
 	/** The cliente. */
-	private Integer cliente;
+	private Long cliente;
 
 	/** The nombre. */
 	private String nombre;
@@ -75,7 +75,7 @@ public class UsuariosCliente implements Serializable {
 	 *
 	 * @return the cliente
 	 */
-	public Integer getCliente() {
+	public Long getCliente() {
 		return cliente;
 	}
 
@@ -85,7 +85,7 @@ public class UsuariosCliente implements Serializable {
 	 * @param cliente
 	 *            the new cliente
 	 */
-	public void setCliente(Integer cliente) {
+	public void setCliente(Long cliente) {
 		this.cliente = cliente;
 	}
 

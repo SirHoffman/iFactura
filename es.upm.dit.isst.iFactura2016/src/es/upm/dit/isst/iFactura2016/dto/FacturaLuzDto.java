@@ -3,7 +3,7 @@ package es.upm.dit.isst.iFactura2016.dto;
 /**
  * The Class FacturaGasDto.
  */
-public class FacturaGasDto {
+public class FacturaLuzDto {
 
 	/** The id factura. */
 	private Long idFactura;
@@ -29,7 +29,7 @@ public class FacturaGasDto {
 	/**
 	 * Instantiates a new factura gas dto.
 	 */
-	public FacturaGasDto() {
+	public FacturaLuzDto() {
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class FacturaGasDto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FacturaGasDto other = (FacturaGasDto) obj;
+		FacturaLuzDto other = (FacturaLuzDto) obj;
 		if (consumoFacturado == null) {
 			if (other.consumoFacturado != null)
 				return false;

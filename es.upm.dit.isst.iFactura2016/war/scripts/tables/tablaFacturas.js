@@ -22,22 +22,15 @@ $(function() {
 		$("#facturasDiv").hide();
 		e.preventDefault();
 	});
-	$('#login-form-link').click(function(e) {
-		$(".login-form").delay(100).fadeIn(100);
-		$("#register-form-link").delay(100).fadeIn(100);
-		$("#password-form-link").delay(100).fadeIn(100);
-		$(".register-form").fadeOut(100);
-		$(".password-form").fadeOut(100);
-		$("#login-form-link").fadeOut(100);
+	$('#facturaLuzManual').click(function(e) {
+		$("#formularioLuz").show();
+		$("#facturasDiv").hide();
 		e.preventDefault();
 	});
-	$('#password-form-link').click(function(e) {
-		$(".password-form").delay(100).fadeIn(100);
-		$("#login-form-link").delay(100).fadeIn(100);
-		$(".register-form").fadeOut(100);
-		$(".login-form").fadeOut(100);
-		$("#register-form-link").fadeOut(100);
-		$("#password-form-link").fadeOut(100);
+	$('#facturaTelefonoManual').click(function(e) {
+		$("#formularioTelefono").show();
+		$("#facturasDiv").hide();
 		e.preventDefault();
 	});
+
 });

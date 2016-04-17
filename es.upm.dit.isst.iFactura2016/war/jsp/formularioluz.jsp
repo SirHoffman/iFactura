@@ -1,7 +1,7 @@
 <form id="formGas" class="form-horizontal" action="/nuevaFactura"
 	method="post" role="form">
 	<input type="hidden" class="form-control" name="tipo" id="tipo"
-		value="gas">
+		value="luz">
 
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="empresa">Empresa:</label>

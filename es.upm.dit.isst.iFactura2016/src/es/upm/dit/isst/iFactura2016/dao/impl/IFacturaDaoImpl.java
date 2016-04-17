@@ -8,9 +8,11 @@ import javax.persistence.Query;
 
 import es.upm.dit.isst.iFactura2016.dao.IFacturaDao;
 import es.upm.dit.isst.iFactura2016.emf.EMFService;
+import es.upm.dit.isst.iFactura2016.model.Clientes;
 import es.upm.dit.isst.iFactura2016.model.FacturaGas;
 import es.upm.dit.isst.iFactura2016.model.FacturaLuz;
 import es.upm.dit.isst.iFactura2016.model.FacturaTelefono;
+import es.upm.dit.isst.iFactura2016.model.UsuariosCliente;
 
 /**
  * The Class IFacturaDaoImpl.
@@ -77,13 +79,65 @@ public class IFacturaDaoImpl implements IFacturaDao {
 	}
 
 	@Override
-	public void save(FacturaGas nuevaFacturaGas) {
+	public FacturaGas save(FacturaGas nuevaFacturaGas) {
 		EntityManager em = EMFService.get().createEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		em.persist(nuevaFacturaGas);
 		transaction.commit();
 		em.close();
+
+		return nuevaFacturaGas;
+
+	}
+
+	@Override
+	public FacturaTelefono save(FacturaTelefono nuevaFacturaTelefono) {
+		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.persist(nuevaFacturaTelefono);
+		transaction.commit();
+		em.close();
+
+		return nuevaFacturaTelefono;
+	}
+
+	@Override
+	public FacturaLuz save(FacturaLuz nuevaFacturaLuz) {
+		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.persist(nuevaFacturaLuz);
+		transaction.commit();
+		em.close();
+
+		return nuevaFacturaLuz;
+	}
+
+	@Override
+	public Clientes save(Clientes newCliente) {
+		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.persist(newCliente);
+		transaction.commit();
+		em.close();
+
+		return newCliente;
+
+	}
+
+	@Override
+	public UsuariosCliente save(UsuariosCliente newUsuarioCliente) {
+		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		em.persist(newUsuarioCliente);
+		transaction.commit();
+		em.close();
+
+		return newUsuarioCliente;
 
 	}
 

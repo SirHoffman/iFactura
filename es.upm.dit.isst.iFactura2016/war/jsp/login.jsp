@@ -25,27 +25,34 @@
 
 
 	<!-- Start Login box -->
+	<div id="loginDiv">
+		<div class="container clearfix" style="padding: 70px 70px 70px 70px;">
+			<form class="col-sm-4 col-md-4 animated form-signin">
+				<h2 class="form-signin-heading">Login</h2>
+				<div style="padding-bottom: 15px; padding-top: 15px">
+					<label for="inputEmail" class="sr-only">Correo Electronico</label>
+					<input id="inputEmail" class="form-control"
+						placeholder="Correo Electronico" required="" autofocus=""
+						type="email"> <label for="inputPassword" class="sr-only">Contraseña</label>
+					<input id="inputPassword" class="form-control"
+						placeholder="Contraseña" required="" type="password">
+				</div>
+				<button class="btn btn-primary" type="submit">Login</button>
 
-	<div class="container clearfix" style="padding: 70px 70px 70px 70px;"
-		id="login-form">
-		<form class="col-sm-4 col-md-4 animated form-signin">
-			<h2 class="form-signin-heading">Login</h2>
-			<div style="padding-bottom: 15px; padding-top: 15px">
-				<label for="inputEmail" class="sr-only">Correo Electronico</label> <input
-					id="inputEmail" class="form-control"
-					placeholder="Correo Electronico" required="" autofocus=""
-					type="email"> <label for="inputPassword" class="sr-only">Contraseña</label>
-				<input id="inputPassword" class="form-control"
-					placeholder="Contraseña" required="" type="password">
-			</div>
-			<button class="btn btn-primary" type="submit">Login</button>
-
-			<a class="btn btn-primary" href="<c:url value="${url}"/>"> <i
-				class="fa fa-google"></i> Login con Google
-			</a>
-		</form>
-
+				<a class="btn btn-primary" href="<c:url value="${url}"/>"> <i
+					class="fa fa-google"></i> Login con Google
+				</a>
+				<div style="padding-bottom: 15px; padding-top: 15px">
+					<a id="registrationLink" href="">Registrate</a>
+				</div>
+			</form>
+		</div>
 	</div>
+	<div id="registrationDiv" class="container clearfix"
+		style="padding: 70px 70px 70px 70px; display: none">
+		<%@ include file="registration.jsp"%>
+	</div>
+
 	<!-- End Login box -->
 	<%@ include file="footer.jsp"%>
 

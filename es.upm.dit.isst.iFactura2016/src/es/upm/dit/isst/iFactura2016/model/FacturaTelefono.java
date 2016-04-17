@@ -3,6 +3,7 @@ package es.upm.dit.isst.iFactura2016.model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.annotation.Nullable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class FacturaTelefono implements Serializable {
 	private Long id;
 
 	/** The nombre. */
+	@Nullable
 	private String nombre;
 
 	/** The empresa. */

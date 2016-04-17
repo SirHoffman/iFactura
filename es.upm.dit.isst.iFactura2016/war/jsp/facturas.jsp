@@ -37,9 +37,9 @@
 					Añadir Factura <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#" id="facturaGasManual">Manual</a></li>
-					<li><a href="#">Archivo</a></li>
-					<li><a href="#">Enlace</a></li>
+					<li><a href="" id="facturaGasManual">Manual</a></li>
+					<li><a href="">Archivo</a></li>
+					<li><a href="">Enlace</a></li>
 				</ul>
 			</div>
 		</div>
@@ -57,9 +57,9 @@
 					Añadir Factura <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Manual</a></li>
-					<li><a href="#">Archivo</a></li>
-					<li><a href="#">Enlace</a></li>
+					<li><a href="" id="facturaLuzManual">Manual</a></li>
+					<li><a href="">Archivo</a></li>
+					<li><a href="">Enlace</a></li>
 				</ul>
 			</div>
 		</div>
@@ -78,15 +78,21 @@
 					Añadir Factura <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Manual</a></li>
-					<li><a href="#">Archivo</a></li>
-					<li><a href="#">Enlace</a></li>
+					<li><a href="" id="facturaTelefonoManual">Manual</a></li>
+					<li><a href="">Archivo</a></li>
+					<li><a href="">Enlace</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div id="formularioGas" style="display: none">
 		<%@ include file="formulariogas.jsp"%>
+	</div>
+	<div id="formularioLuz" style="display: none">
+		<%@ include file="formularioluz.jsp"%>
+	</div>
+	<div id="formularioTelefono" style="display: none">
+		<%@ include file="formulariotelefono.jsp"%>
 	</div>
 
 

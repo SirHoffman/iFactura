@@ -66,11 +66,12 @@ public class FacturasServlet extends HttpServlet {
 			for (FacturaGas factura : facturasGas) {
 				FacturaGasDto facturaDevuelta = new FacturaGasDto();
 				facturaDevuelta.setIdFactura(factura.getId());
+				facturaDevuelta.setEmpresa(factura.getEmpresa());
 				facturaDevuelta.setImporte(factura.getImporte());
-				facturaDevuelta.setConsumo(factura.getConsumoFacturado());
-				facturaDevuelta.setFechaEmision("1/4/2016");
-				facturaDevuelta.setFechaInicio("1/1/2016");
-				facturaDevuelta.setFechaFin("1/3/2016");
+				facturaDevuelta.setPotenciaContratada(factura.getPotenciaContratada());
+				facturaDevuelta.setPotenciaFacturada(factura.getPotenciaFacturada());
+				facturaDevuelta.setConsumoFacturado(factura.getConsumoFacturado());
+				facturaDevuelta.setConsumoServicios(factura.getConsumoServicios());
 
 				facturasObtenidas.add(facturaDevuelta);
 
