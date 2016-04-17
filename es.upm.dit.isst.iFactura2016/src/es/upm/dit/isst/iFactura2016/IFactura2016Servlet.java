@@ -11,9 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import es.upm.dit.isst.iFactura2016.dao.IFacturaDao;
+import es.upm.dit.isst.iFactura2016.dao.impl.IFacturaDaoImpl;
+import es.upm.dit.isst.iFactura2016.model.UsuariosCliente;
+
 @SuppressWarnings("serial")
 public class IFactura2016Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+		IFacturaDao iFacturaDao = IFacturaDaoImpl.getInstance();
 
 		UserService userService = UserServiceFactory.getUserService();
 		String url = userService.createLoginURL(req.getRequestURI());
@@ -24,11 +30,23 @@ public class IFactura2016Servlet extends HttpServlet {
 
 		if (req.getUserPrincipal() != null) {
 
-			user = req.getUserPrincipal().getName();
-			url = userService.createLogoutURL(req.getRequestURI());
-			urlLinktext = "Logout";
+			// Comprobamos si existe un usuario registrado con ese nombre
+			// si no existe se pedirá registro
+			String nameUsuario = req.getUserPrincipal().getName();
+			UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
+			if (usuarioSesion == null) {
+				usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);
+			}
+			if (usuarioSesion != null) {
 
-			view = req.getRequestDispatcher("/jsp/home.jsp");
+				user = req.getUserPrincipal().getName();
+				url = userService.createLogoutURL(req.getRequestURI());
+				urlLinktext = "Logout";
+
+				view = req.getRequestDispatcher("/jsp/home.jsp");
+			} else {
+				req.getSession().setAttribute("alert", "El usuario no existe");
+			}
 		}
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("url", url);

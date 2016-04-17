@@ -43,7 +43,7 @@ public class IFacturaDaoImpl implements IFacturaDao {
 	}
 
 	@Override
-	public List<FacturaGas> getFacturasGasByUser(Integer idUser) {
+	public List<FacturaGas> getFacturasGasByUser(Long idUser) {
 
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select gas from FacturaGas gas where cliente = :cliente ");
@@ -55,7 +55,7 @@ public class IFacturaDaoImpl implements IFacturaDao {
 	}
 
 	@Override
-	public List<FacturaLuz> getFacturasLuzByUser(Integer idUser) {
+	public List<FacturaLuz> getFacturasLuzByUser(Long idUser) {
 
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select luz from FacturaLuz luz where cliente = :cliente ");
@@ -67,7 +67,7 @@ public class IFacturaDaoImpl implements IFacturaDao {
 	}
 
 	@Override
-	public List<FacturaTelefono> getFacturasTelefonoByUser(Integer idUser) {
+	public List<FacturaTelefono> getFacturasTelefonoByUser(Long idUser) {
 
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select telf from FacturaTelefono telf where nombre = :cliente ");
@@ -139,6 +139,44 @@ public class IFacturaDaoImpl implements IFacturaDao {
 
 		return newUsuarioCliente;
 
+	}
+
+	@Override
+	public UsuariosCliente update(UsuariosCliente updateUsuarioCliente) {
+		EntityManager em = EMFService.get().createEntityManager();
+		UsuariosCliente updatedUsuarioCliente = em.merge(updateUsuarioCliente);
+		em.close();
+		return updatedUsuarioCliente;
+	}
+
+	@Override
+	public UsuariosCliente getUsuarioByName(String nameUsuario) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select user from UsuariosCliente user where nombre = :nameUsuario");
+		q.setParameter("nameUsuario", nameUsuario);
+
+		UsuariosCliente usuarioCliente = null;
+		List<UsuariosCliente> usuariosCliente = q.getResultList();
+		if (usuariosCliente.size() > 0) {
+			usuarioCliente = usuariosCliente.get(0);
+		}
+		em.close();
+		return usuarioCliente;
+	}
+
+	@Override
+	public UsuariosCliente getUsuarioByMail(String mailUsuario) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select user from UsuariosCliente user where email = :mailUsuario");
+		q.setParameter("mailUsuario", mailUsuario);
+
+		UsuariosCliente usuarioCliente = null;
+		List<UsuariosCliente> usuariosCliente = q.getResultList();
+		if (usuariosCliente.size() > 0) {
+			usuarioCliente = usuariosCliente.get(0);
+		}
+		em.close();
+		return usuarioCliente;
 	}
 
 }

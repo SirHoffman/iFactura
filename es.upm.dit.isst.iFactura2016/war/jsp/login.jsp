@@ -54,6 +54,10 @@
 		<%@ include file="registration.jsp"%>
 	</div>
 
+	<c:if test="${alert != null}">
+		<h3 style="font: bold; color: red;">${alert}</h3>
+	</c:if>
+
 	<!-- End Login box -->
 	<%@ include file="footer.jsp"%>
 

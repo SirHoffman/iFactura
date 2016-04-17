@@ -16,29 +16,29 @@ public interface IFacturaDao {
 	/**
 	 * Gets the facturas gas by user.
 	 *
-	 * @param idUser
+	 * @param idUsuario
 	 *            the id user
 	 * @return the facturas gas by user
 	 */
-	public List<FacturaGas> getFacturasGasByUser(Integer idUser);
+	public List<FacturaGas> getFacturasGasByUser(Long idUsuario);
 
 	/**
 	 * Gets the facturas luz by user.
 	 *
-	 * @param idUser
+	 * @param idUsuario
 	 *            the id user
 	 * @return the facturas luz by user
 	 */
-	public List<FacturaLuz> getFacturasLuzByUser(Integer idUser);
+	public List<FacturaLuz> getFacturasLuzByUser(Long idUsuario);
 
 	/**
 	 * Gets the facturas telefono by user.
 	 *
-	 * @param idUser
+	 * @param idUsuario
 	 *            the id user
 	 * @return the facturas telefono by user
 	 */
-	public List<FacturaTelefono> getFacturasTelefonoByUser(Integer idUser);
+	public List<FacturaTelefono> getFacturasTelefonoByUser(Long idUsuario);
 
 	/**
 	 * Save.
@@ -72,7 +72,7 @@ public interface IFacturaDao {
 	 *
 	 * @param newCliente
 	 *            the new cliente
-	 * @return 
+	 * @return
 	 */
 	public Clientes save(Clientes newCliente);
 
@@ -81,8 +81,35 @@ public interface IFacturaDao {
 	 *
 	 * @param newUsuarioCliente
 	 *            the new usuario cliente
-	 * @return 
+	 * @return
 	 */
 	public UsuariosCliente save(UsuariosCliente newUsuarioCliente);
+
+	/**
+	 * Update.
+	 *
+	 * @param updateUsuarioCliente
+	 *            the update usuario cliente
+	 * @return
+	 */
+	public UsuariosCliente update(UsuariosCliente updateUsuarioCliente);
+
+	/**
+	 * Gets the usuario by name.
+	 *
+	 * @param nameUsuario
+	 *            the name usuario
+	 * @return the usuario by name
+	 */
+	public UsuariosCliente getUsuarioByName(String nameUsuario);
+
+	/**
+	 * Gets the usuario by mail.
+	 *
+	 * @param mailUsuario
+	 *            the mail usuario
+	 * @return the usuario by mail
+	 */
+	public UsuariosCliente getUsuarioByMail(String mailUsuario);
 
 }

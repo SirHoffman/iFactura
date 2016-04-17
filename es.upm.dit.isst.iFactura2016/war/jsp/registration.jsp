@@ -3,10 +3,11 @@
 	role="form">
 	<h2 class="form-signin-heading">Registro</h2>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="nombre">Nombre:</label>
+		<label class="control-label col-sm-2" for="nombre">Nombre /
+			Cuenta de Google:</label>
 		<div class="col-sm-3">
 			<input type="text" class="form-control" name="nombre" id="nombre"
-				placeholder="Nombre" required="">
+				placeholder="Nombre/Cuenta de Google" required="">
 		</div>
 	</div>
 

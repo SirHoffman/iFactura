@@ -21,6 +21,7 @@ import es.upm.dit.isst.iFactura2016.dto.FacturaTelefonoDto;
 import es.upm.dit.isst.iFactura2016.model.FacturaGas;
 import es.upm.dit.isst.iFactura2016.model.FacturaLuz;
 import es.upm.dit.isst.iFactura2016.model.FacturaTelefono;
+import es.upm.dit.isst.iFactura2016.model.UsuariosCliente;
 
 /**
  * The Class NuevaFacturaServlet.
@@ -38,22 +39,30 @@ public class NuevaFacturaServlet extends HttpServlet {
 
 		IFacturaDao iFacturaDao = IFacturaDaoImpl.getInstance();
 
+		// Obtenemos el usuario de la sesion
+		String nameUsuario = req.getUserPrincipal().getName();
+		UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
+		if (usuarioSesion == null) {
+			usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);
+		}
+		Long idUsuario = usuarioSesion.getCliente();
+
 		String tipoFactura = req.getParameter("tipo");
 		if (tipoFactura.compareToIgnoreCase("gas") == 0) {
-			saveFacturaGas(req, iFacturaDao);
+			saveFacturaGas(req, iFacturaDao, idUsuario);
 		} else if (tipoFactura.compareToIgnoreCase("luz") == 0) {
-			saveFacturaLuz(req, iFacturaDao);
+			saveFacturaLuz(req, iFacturaDao, idUsuario);
 		} else if (tipoFactura.compareToIgnoreCase("telefono") == 0) {
-			saveFacturaTelefono(req, iFacturaDao);
+			saveFacturaTelefono(req, iFacturaDao, idUsuario);
 		} else {
 			throw new IOException("ERROR AL CREAR FACTURA");
 		}
 
-		obtenerFacturasGas(req, iFacturaDao);
+		obtenerFacturasGas(req, iFacturaDao, idUsuario);
 
-		obtenerFacturasLuz(req, iFacturaDao);
+		obtenerFacturasLuz(req, iFacturaDao, idUsuario);
 
-		obtenerFacturasTelefono(req, iFacturaDao);
+		obtenerFacturasTelefono(req, iFacturaDao, idUsuario);
 
 		RequestDispatcher view = req.getRequestDispatcher("/jsp/home.jsp");
 
@@ -71,8 +80,9 @@ public class NuevaFacturaServlet extends HttpServlet {
 	 *            the req
 	 * @param iFacturaDao
 	 *            the i factura dao
+	 * @param idUsuario
 	 */
-	private void saveFacturaTelefono(HttpServletRequest req, IFacturaDao iFacturaDao) {
+	private void saveFacturaTelefono(HttpServletRequest req, IFacturaDao iFacturaDao, Long idUsuario) {
 		String nombre = req.getParameter("nombre");
 		String compania = req.getParameter("compania");
 		Double importe = Double.parseDouble(req.getParameter("importe"));
@@ -92,7 +102,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 		}
 
 		FacturaTelefono newFacturaTelefono = new FacturaTelefono();
-		newFacturaTelefono.setCliente((long) 1);
+		newFacturaTelefono.setCliente(idUsuario);
 		newFacturaTelefono.setNombre(nombre);
 		newFacturaTelefono.setEmpresa(compania);
 		newFacturaTelefono.setImporte(importe);
@@ -115,8 +125,9 @@ public class NuevaFacturaServlet extends HttpServlet {
 	 *            the req
 	 * @param iFacturaDao
 	 *            the i factura dao
+	 * @param idUsuario
 	 */
-	private void saveFacturaGas(HttpServletRequest req, IFacturaDao iFacturaDao) {
+	private void saveFacturaGas(HttpServletRequest req, IFacturaDao iFacturaDao, Long idUsuario) {
 		String empresa = req.getParameter("empresa");
 		Double importe = Double.parseDouble(req.getParameter("importe"));
 		Double potenciaContratada = Double.parseDouble(req.getParameter("potenciaContratada"));
@@ -126,7 +137,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 		Boolean equiposMedida = Boolean.valueOf(req.getParameter("equiposMedida"));
 
 		FacturaGas nuevaFacturaGas = new FacturaGas();
-		nuevaFacturaGas.setCliente((long) 1);
+		nuevaFacturaGas.setCliente(idUsuario);
 		nuevaFacturaGas.setConsumoFacturado(consumoFacturado);
 		nuevaFacturaGas.setConsumoServicios(consumoServicios);
 		nuevaFacturaGas.setEmpresa(empresa);
@@ -145,8 +156,9 @@ public class NuevaFacturaServlet extends HttpServlet {
 	 *            the req
 	 * @param iFacturaDao
 	 *            the i factura dao
+	 * @param idUsuario
 	 */
-	private void saveFacturaLuz(HttpServletRequest req, IFacturaDao iFacturaDao) {
+	private void saveFacturaLuz(HttpServletRequest req, IFacturaDao iFacturaDao, Long idUsuario) {
 		String empresa = req.getParameter("empresa");
 		Double importe = Double.parseDouble(req.getParameter("importe"));
 		Double potenciaContratada = Double.parseDouble(req.getParameter("potenciaContratada"));
@@ -156,7 +168,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 		Boolean equiposMedida = Boolean.valueOf(req.getParameter("equiposMedida"));
 
 		FacturaLuz nuevaFacturaLuz = new FacturaLuz();
-		nuevaFacturaLuz.setCliente((long) 1);
+		nuevaFacturaLuz.setCliente(idUsuario);
 		nuevaFacturaLuz.setConsumoFacturado(consumoFacturado);
 		nuevaFacturaLuz.setConsumoServicios(consumoServicios);
 		nuevaFacturaLuz.setEmpresa(empresa);
@@ -175,9 +187,10 @@ public class NuevaFacturaServlet extends HttpServlet {
 	 *            the req
 	 * @param ifacturaDao
 	 *            the ifactura dao
+	 * @param idUsuario
 	 */
-	private void obtenerFacturasTelefono(HttpServletRequest req, IFacturaDao ifacturaDao) {
-		List<FacturaTelefono> facturasTelefono = ifacturaDao.getFacturasTelefonoByUser(1);
+	private void obtenerFacturasTelefono(HttpServletRequest req, IFacturaDao ifacturaDao, Long idUsuario) {
+		List<FacturaTelefono> facturasTelefono = ifacturaDao.getFacturasTelefonoByUser(idUsuario);
 		List<FacturaTelefonoDto> facturasObtenidas = new ArrayList<FacturaTelefonoDto>();
 		if (facturasTelefono != null && !facturasTelefono.isEmpty()) {
 			req.setAttribute("existenFacturasTelefono", true);
@@ -209,9 +222,10 @@ public class NuevaFacturaServlet extends HttpServlet {
 	 *            the req
 	 * @param ifacturaDao
 	 *            the ifactura dao
+	 * @param idUsuario
 	 */
-	private void obtenerFacturasLuz(HttpServletRequest req, IFacturaDao ifacturaDao) {
-		List<FacturaLuz> facturasLuz = ifacturaDao.getFacturasLuzByUser(1);
+	private void obtenerFacturasLuz(HttpServletRequest req, IFacturaDao ifacturaDao, Long idUsuario) {
+		List<FacturaLuz> facturasLuz = ifacturaDao.getFacturasLuzByUser(idUsuario);
 		List<FacturaLuzDto> facturasObtenidas = new ArrayList<FacturaLuzDto>();
 
 		if (facturasLuz != null && !facturasLuz.isEmpty()) {
@@ -240,9 +254,10 @@ public class NuevaFacturaServlet extends HttpServlet {
 	 *            the req
 	 * @param ifacturaDao
 	 *            the ifactura dao
+	 * @param idUsuario
 	 */
-	private void obtenerFacturasGas(HttpServletRequest req, IFacturaDao ifacturaDao) {
-		List<FacturaGas> facturasGas = ifacturaDao.getFacturasGasByUser(1);
+	private void obtenerFacturasGas(HttpServletRequest req, IFacturaDao ifacturaDao, Long idUsuario) {
+		List<FacturaGas> facturasGas = ifacturaDao.getFacturasGasByUser(idUsuario);
 
 		if (facturasGas != null && !facturasGas.isEmpty()) {
 			req.setAttribute("existenFacturasGas", true);

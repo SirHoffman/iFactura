@@ -18,6 +18,7 @@ import es.upm.dit.isst.iFactura2016.dto.FacturaTelefonoDto;
 import es.upm.dit.isst.iFactura2016.model.FacturaGas;
 import es.upm.dit.isst.iFactura2016.model.FacturaLuz;
 import es.upm.dit.isst.iFactura2016.model.FacturaTelefono;
+import es.upm.dit.isst.iFactura2016.model.UsuariosCliente;
 
 @SuppressWarnings("serial")
 public class FacturasServlet extends HttpServlet {
@@ -29,11 +30,19 @@ public class FacturasServlet extends HttpServlet {
 		// a la vista
 		IFacturaDao iFacturaDao = IFacturaDaoImpl.getInstance();
 
-		obtenerFacturasGas(req, iFacturaDao);
+		// Obtenemos el usuario de la sesion
+		String nameUsuario = req.getUserPrincipal().getName();
+		UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
+		if (usuarioSesion == null) {
+			usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);
+		}
+		Long idUsuario = usuarioSesion.getCliente();
 
-		obtenerFacturasLuz(req, iFacturaDao);
+		obtenerFacturasGas(req, iFacturaDao, idUsuario);
 
-		obtenerFacturasTelefono(req, iFacturaDao);
+		obtenerFacturasLuz(req, iFacturaDao, idUsuario);
+
+		obtenerFacturasTelefono(req, iFacturaDao, idUsuario);
 
 		try {
 			view.forward(req, resp);
@@ -50,9 +59,10 @@ public class FacturasServlet extends HttpServlet {
 	 *            the req
 	 * @param ifacturaDao
 	 *            the ifactura dao
+	 * @param idUsuario
 	 */
-	private void obtenerFacturasTelefono(HttpServletRequest req, IFacturaDao ifacturaDao) {
-		List<FacturaTelefono> facturasTelefono = ifacturaDao.getFacturasTelefonoByUser(1);
+	private void obtenerFacturasTelefono(HttpServletRequest req, IFacturaDao ifacturaDao, Long idUsuario) {
+		List<FacturaTelefono> facturasTelefono = ifacturaDao.getFacturasTelefonoByUser(idUsuario);
 		List<FacturaTelefonoDto> facturasObtenidas = new ArrayList<FacturaTelefonoDto>();
 		if (facturasTelefono != null && !facturasTelefono.isEmpty()) {
 			req.setAttribute("existenFacturasTelefono", true);
@@ -84,9 +94,10 @@ public class FacturasServlet extends HttpServlet {
 	 *            the req
 	 * @param ifacturaDao
 	 *            the ifactura dao
+	 * @param idUsuario
 	 */
-	private void obtenerFacturasLuz(HttpServletRequest req, IFacturaDao ifacturaDao) {
-		List<FacturaLuz> facturasLuz = ifacturaDao.getFacturasLuzByUser(1);
+	private void obtenerFacturasLuz(HttpServletRequest req, IFacturaDao ifacturaDao, Long idUsuario) {
+		List<FacturaLuz> facturasLuz = ifacturaDao.getFacturasLuzByUser(idUsuario);
 		List<FacturaLuzDto> facturasObtenidas = new ArrayList<FacturaLuzDto>();
 
 		if (facturasLuz != null && !facturasLuz.isEmpty()) {
@@ -108,12 +119,21 @@ public class FacturasServlet extends HttpServlet {
 		}
 	}
 
-	private void obtenerFacturasGas(HttpServletRequest req, IFacturaDao ifacturaDao) {
-		List<FacturaGas> facturasGas = ifacturaDao.getFacturasGasByUser(1);
+	/**
+	 * Obtener facturas gas.
+	 *
+	 * @param req
+	 *            the req
+	 * @param ifacturaDao
+	 *            the ifactura dao
+	 * @param idUsuario
+	 */
+	private void obtenerFacturasGas(HttpServletRequest req, IFacturaDao ifacturaDao, Long idUsuario) {
+		List<FacturaGas> facturasGas = ifacturaDao.getFacturasGasByUser(idUsuario);
 
 		if (facturasGas != null && !facturasGas.isEmpty()) {
 			req.setAttribute("existenFacturasGas", true);
-			List<FacturaGasDto> facturasObtenidas = new ArrayList<>();
+			List<FacturaGasDto> facturasObtenidas = new ArrayList<FacturaGasDto>();
 			for (FacturaGas factura : facturasGas) {
 				FacturaGasDto facturaDevuelta = new FacturaGasDto();
 				facturaDevuelta.setIdFactura(factura.getId());

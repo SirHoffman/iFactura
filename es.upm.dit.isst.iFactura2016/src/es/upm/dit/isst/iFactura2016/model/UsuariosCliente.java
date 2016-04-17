@@ -3,8 +3,6 @@ package es.upm.dit.isst.iFactura2016.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -18,7 +16,6 @@ public class UsuariosCliente implements Serializable {
 
 	/** The id. */
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	/** The cliente. */

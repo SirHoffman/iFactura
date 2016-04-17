@@ -1,7 +1,6 @@
 package es.upm.dit.isst.iFactura2016;
 
 import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.upm.dit.isst.iFactura2016.dao.IFacturaDao;
 import es.upm.dit.isst.iFactura2016.dao.impl.IFacturaDaoImpl;
-import es.upm.dit.isst.iFactura2016.model.Clientes;
 import es.upm.dit.isst.iFactura2016.model.UsuariosCliente;
 
 @SuppressWarnings("serial")
@@ -28,32 +26,29 @@ public class EditUserServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 
-		// Creamos el id propio de usuario
-		// TODO: Revisar modelo de datos
-		Long cliente = ThreadLocalRandom.current().nextLong();
-
-		// Insertamos en la tabla Clientes
-		Clientes newCliente = new Clientes();
-		newCliente.setId(cliente);
-		// Por defecto a false
-		newCliente.setReciboOfertas(false);
-		iFacturaDao.save(newCliente);
+		// Obtenemos el usuario de la sesion
+		String nameUsuario = req.getUserPrincipal().getName();
+		UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
+		if (usuarioSesion == null) {
+			usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);
+		}
+		Long id = usuarioSesion.getId();
+		Long cliente = usuarioSesion.getCliente();
 
 		// Insertamos en la tabla Usuarios Cliente
-		UsuariosCliente newUsuarioCliente = new UsuariosCliente();
-		newUsuarioCliente.setCliente(cliente);
-		newUsuarioCliente.setNombre(nombre);
-		newUsuarioCliente.setApellido(apellido);
-		newUsuarioCliente.setEdad(edad);
-		newUsuarioCliente.setDni(dni);
-		newUsuarioCliente.setCodigoPostal(codigoPostal);
-		newUsuarioCliente.setEmail(email);
-		newUsuarioCliente.setPassword(password);
-		iFacturaDao.save(newUsuarioCliente);
+		UsuariosCliente updateUsuarioCliente = new UsuariosCliente();
+		updateUsuarioCliente.setId(id);
+		updateUsuarioCliente.setCliente(cliente);
+		updateUsuarioCliente.setNombre(nombre);
+		updateUsuarioCliente.setApellido(apellido);
+		updateUsuarioCliente.setEdad(edad);
+		updateUsuarioCliente.setDni(dni);
+		updateUsuarioCliente.setCodigoPostal(codigoPostal);
+		updateUsuarioCliente.setEmail(email);
+		updateUsuarioCliente.setPassword(password);
+		iFacturaDao.update(updateUsuarioCliente);
 
 		RequestDispatcher view = req.getRequestDispatcher("/jsp/home.jsp");
-
-		req.getSession().setAttribute("user", nombre);
 
 		try {
 			view.forward(req, resp);
