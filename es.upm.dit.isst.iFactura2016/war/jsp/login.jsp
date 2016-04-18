@@ -32,7 +32,7 @@
 				<h2 class="form-signin-heading">Login</h2>
 				<div style="padding-bottom: 15px; padding-top: 15px">
 					<label for="inputEmail" class="sr-only">Correo Electronico</label>
-					<input id="inputEmail" class="form-control"
+					<input id="inputEmail" name="inputEmail" class="form-control"
 						placeholder="Correo Electronico" required="" autofocus=""
 						type="email"> <label for="inputPassword" class="sr-only">Contraseña</label>
 					<input id="inputPassword" class="form-control"

@@ -27,7 +27,7 @@ public class EditUserServlet extends HttpServlet {
 		String password = req.getParameter("password");
 
 		// Obtenemos el usuario de la sesion
-		String nameUsuario = req.getUserPrincipal().getName();
+		String nameUsuario = (String) req.getSession().getAttribute("user");
 		UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
 		if (usuarioSesion == null) {
 			usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);

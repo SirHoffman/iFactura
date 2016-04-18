@@ -40,7 +40,7 @@ public class NuevaFacturaServlet extends HttpServlet {
 		IFacturaDao iFacturaDao = IFacturaDaoImpl.getInstance();
 
 		// Obtenemos el usuario de la sesion
-		String nameUsuario = req.getUserPrincipal().getName();
+		String nameUsuario = (String) req.getSession().getAttribute("user");
 		UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
 		if (usuarioSesion == null) {
 			usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);

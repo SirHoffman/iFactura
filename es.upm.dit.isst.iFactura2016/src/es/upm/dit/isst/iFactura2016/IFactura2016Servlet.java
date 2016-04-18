@@ -28,18 +28,30 @@ public class IFactura2016Servlet extends HttpServlet {
 
 		RequestDispatcher view = req.getRequestDispatcher("/jsp/login.jsp");
 
-		if (req.getUserPrincipal() != null) {
+		String userMail = null;
+		if (req.getParameter("inputEmail") != null) {
+			userMail = req.getParameter("inputEmail");
+		}
 
+		if (req.getUserPrincipal() != null || userMail != null) {
+
+			String nameUsuario = null;
+			if (req.getUserPrincipal() != null) {
+				// Login con cuenta google
+				nameUsuario = req.getUserPrincipal().getName();
+			} else {
+				// Login propio
+				nameUsuario = userMail;
+			}
 			// Comprobamos si existe un usuario registrado con ese nombre
 			// si no existe se pedirá registro
-			String nameUsuario = req.getUserPrincipal().getName();
 			UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
 			if (usuarioSesion == null) {
 				usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);
 			}
 			if (usuarioSesion != null) {
 
-				user = req.getUserPrincipal().getName();
+				user = nameUsuario;
 				url = userService.createLogoutURL(req.getRequestURI());
 				urlLinktext = "Logout";
 
