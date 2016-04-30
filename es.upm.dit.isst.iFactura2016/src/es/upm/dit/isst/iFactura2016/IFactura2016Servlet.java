@@ -44,7 +44,7 @@ public class IFactura2016Servlet extends HttpServlet {
 				nameUsuario = userMail;
 			}
 			// Comprobamos si existe un usuario registrado con ese nombre
-			// si no existe se pedir· registro
+			// si no existe se pedir√° registro
 			UsuariosCliente usuarioSesion = iFacturaDao.getUsuarioByName(nameUsuario);
 			if (usuarioSesion == null) {
 				usuarioSesion = iFacturaDao.getUsuarioByMail(nameUsuario);
@@ -57,7 +57,8 @@ public class IFactura2016Servlet extends HttpServlet {
 
 				view = req.getRequestDispatcher("/jsp/home.jsp");
 			} else {
-				req.getSession().setAttribute("alert", "El usuario no existe");
+				//req.getSession().setAttribute("alert", "El usuario no existe");
+				req.getRequestDispatcher("registration.jsp").fordward(req, resp);
 			}
 		}
 		req.getSession().setAttribute("user", user);
