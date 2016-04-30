@@ -17,7 +17,7 @@ import es.upm.dit.isst.iFactura2016.model.UsuariosCliente;
 
 @SuppressWarnings("serial")
 public class IFactura2016Servlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
 		IFacturaDao iFacturaDao = IFacturaDaoImpl.getInstance();
 
@@ -58,7 +58,7 @@ public class IFactura2016Servlet extends HttpServlet {
 				view = req.getRequestDispatcher("/jsp/home.jsp");
 			} else {
 				//req.getSession().setAttribute("alert", "El usuario no existe");
-				req.getRequestDispatcher("registration.jsp").fordward(req, resp);
+				req.getRequestDispatcher("registration.jsp").forward(req, resp);
 			}
 		}
 		req.getSession().setAttribute("user", user);
